@@ -1,5 +1,7 @@
 import { MovieModel } from "../models/model.movie.js"
 
+import { validateMovie, validatePartialMovie } from '../schemes/movieSchema.js'
+
 export class MovieController {
   static async getAll (req, res) {
     const { genre } = req.query
@@ -37,7 +39,7 @@ export class MovieController {
     
     const { id } = req.params
   
-    const updatedMovie = await MovieModel.update({ is, input: result.data })
+    const updatedMovie = await MovieModel.update({ input: result.data })
   
     return res.json(updatedMovie)
   }
